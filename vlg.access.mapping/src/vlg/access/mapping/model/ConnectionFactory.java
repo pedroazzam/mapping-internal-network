@@ -3,13 +3,16 @@ package vlg.access.mapping.model;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-//CHANGE THIS CLASS NAME TO 'ConnectionFactory' AND INSERT THE DATABASE-ADDRESS, DATABASE-LOGIN AND DATABASE-PASSWORD BELOW.
-public class ConnectionFactoryNoData{
+
+public class ConnectionFactory{
+	String mySqlUser = System.getenv("MYSQL_USER");
+	String mySqlPassword = System.getenv("MYSQL_PASSWORD");
+
 	public Connection getConnection() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			String caminhoBD = "DATABASE-ADDRESS-HERE";
-			return DriverManager.getConnection("jdbc:mysql:" + caminhoBD,"DATABASE-LOGIN-HERE","DATABASE-PASSWORD-HERE");
+			String caminhoBD = "//vlgconnect.dlinkddns.com/vlg_network";
+			return DriverManager.getConnection("jdbc:mysql:" + caminhoBD, mySqlUser, mySqlPassword);
 			
 		} catch (Exception e) {
 			System.out.println("nao conectou...........................");
